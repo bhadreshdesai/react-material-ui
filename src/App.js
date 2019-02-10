@@ -4,11 +4,23 @@ import {
   List,
   ListItem,
   ListItemText,
+  Paper,
   TextField,
   Typography
 } from "@material-ui/core";
+import { withStyles } from "@material-ui/styles";
 
-export default class App extends React.Component {
+const unit = 8;
+
+const styles = {
+  root: {
+    margin: `${unit * 3}px auto`,
+    padding: unit * 2,
+    maxWidth: 400
+  }
+};
+
+class App extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -39,7 +51,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <Paper className={this.props.classes.root}>
         <Typography variant="h4" align="center" gutterBottom={true}>
           Exercises
         </Typography>
@@ -61,7 +73,9 @@ export default class App extends React.Component {
             </ListItem>
           ))}
         </List>
-      </div>
+      </Paper>
     );
   }
 }
+
+export default withStyles(styles)(App);
