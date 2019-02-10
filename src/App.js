@@ -11,7 +11,14 @@ import {
 export default class App extends React.Component {
   constructor() {
     super();
-    this.state = { exercises: [], exerciseName: "" };
+    this.state = {
+      exercises: [
+        { id: 1, exerciseName: "Bench Press" },
+        { id: 2, exerciseName: "Squats" },
+        { id: 3, exerciseName: "Deadlift" }
+      ],
+      exerciseName: ""
+    };
   }
 
   handleChange = ({ target: { name, value } }) =>
@@ -43,7 +50,7 @@ export default class App extends React.Component {
             value={this.state.exerciseName}
             onChange={this.handleChange}
           />
-          <Button type="submit" color="primary" variant="raised">
+          <Button type="submit" color="primary" variant="contained">
             Create
           </Button>
         </form>
