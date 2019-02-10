@@ -41,6 +41,11 @@ class App extends React.Component {
       [name]: value
     });
 
+  handleDelete = id =>
+    this.setState(prevState => ({
+      exercises: prevState.exercises.filter(ex => ex.id !== id)
+    }));
+
   handleCreate = e => {
     e.preventDefault();
     this.setState(prevState => ({
@@ -74,7 +79,10 @@ class App extends React.Component {
             <ListItem key={exercise.id}>
               <ListItemText primary={exercise.exerciseName} />
               <ListItemSecondaryAction>
-                <IconButton color="primary">
+                <IconButton
+                  color="primary"
+                  onClick={() => this.handleDelete(exercise.id)}
+                >
                   <Delete />
                 </IconButton>
               </ListItemSecondaryAction>
