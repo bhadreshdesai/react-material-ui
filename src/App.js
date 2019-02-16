@@ -1,6 +1,7 @@
 import React from "react";
-import { Button, Paper, TextField, Typography } from "@material-ui/core";
+import { Paper, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
+import ExcerciseForm from "./components/ExcerciseForm";
 import ExcerciseList from "./components/ExcerciseList";
 
 const unit = 8;
@@ -53,17 +54,11 @@ class App extends React.Component {
         <Typography variant="h4" align="center" gutterBottom={true}>
           Exercises
         </Typography>
-        <form onSubmit={this.handleCreate}>
-          <TextField
-            name="exerciseName"
-            label="Exercise Name"
-            value={this.state.exerciseName}
-            onChange={this.handleChange}
-          />
-          <Button type="submit" color="primary" variant="contained">
-            Create
-          </Button>
-        </form>
+        <ExcerciseForm
+          exerciseName={this.state.exerciseName}
+          handleCreate={this.handleCreate}
+          handleChange={this.handleChange}
+        />
         <ExcerciseList
           exercises={this.state.exercises}
           handleDelete={this.handleDelete}
