@@ -1,17 +1,7 @@
 import React from "react";
-import {
-  Button,
-  IconButton,
-  List,
-  ListItem,
-  ListItemSecondaryAction,
-  ListItemText,
-  Paper,
-  TextField,
-  Typography
-} from "@material-ui/core";
-import { Delete } from "@material-ui/icons";
+import { Button, Paper, TextField, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
+import ExcerciseList from "./components/ExcerciseList";
 
 const unit = 8;
 
@@ -74,21 +64,10 @@ class App extends React.Component {
             Create
           </Button>
         </form>
-        <List>
-          {this.state.exercises.map(exercise => (
-            <ListItem key={exercise.id}>
-              <ListItemText primary={exercise.exerciseName} />
-              <ListItemSecondaryAction>
-                <IconButton
-                  color="primary"
-                  onClick={() => this.handleDelete(exercise.id)}
-                >
-                  <Delete />
-                </IconButton>
-              </ListItemSecondaryAction>
-            </ListItem>
-          ))}
-        </List>
+        <ExcerciseList
+          exercises={this.state.exercises}
+          handleDelete={this.handleDelete}
+        />
       </Paper>
     );
   }
