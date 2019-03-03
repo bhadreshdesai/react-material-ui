@@ -1,11 +1,27 @@
 import React from "react";
 import { Paper, Typography } from "@material-ui/core";
-import { withStyles } from "@material-ui/styles";
+import {
+  withStyles,
+  MuiThemeProvider,
+  createMuiTheme
+} from "@material-ui/core/styles";
+
+import purple from "@material-ui/core/colors/purple";
+import green from "@material-ui/core/colors/green";
+
 import ExcerciseForm from "./components/ExcerciseForm";
 import ExcerciseList from "./components/ExcerciseList";
 
-const unit = 8;
+const theme = createMuiTheme({
+  palette: {
+    primary: purple
+  },
+  typography: {
+    useNextVariants: true
+  }
+});
 
+const unit = 8;
 const styles = {
   root: {
     margin: `${unit * 3}px auto`,
@@ -50,20 +66,22 @@ class App extends React.Component {
 
   render() {
     return (
-      <Paper className={this.props.classes.root}>
-        <Typography variant="h4" align="center" gutterBottom={true}>
-          Exercises
-        </Typography>
-        <ExcerciseForm
-          exerciseName={this.state.exerciseName}
-          handleCreate={this.handleCreate}
-          handleChange={this.handleChange}
-        />
-        <ExcerciseList
-          exercises={this.state.exercises}
-          handleDelete={this.handleDelete}
-        />
-      </Paper>
+      <MuiThemeProvider theme={theme}>
+        <Paper className={this.props.classes.root}>
+          <Typography variant="h4" align="center" gutterBottom={true}>
+            Exercises
+          </Typography>
+          <ExcerciseForm
+            exerciseName={this.state.exerciseName}
+            handleCreate={this.handleCreate}
+            handleChange={this.handleChange}
+          />
+          <ExcerciseList
+            exercises={this.state.exercises}
+            handleDelete={this.handleDelete}
+          />
+        </Paper>
+      </MuiThemeProvider>
     );
   }
 }
